@@ -28,10 +28,13 @@ $table = $installer->getConnection()
     ->addColumn('link_href', Varien_Db_Ddl_Table::TYPE_VARCHAR, '255', array(
         'nullable'  => false,
     ))
-    ->addColumn('bg_image', Varien_Db_Ddl_Table::TYPE_VARCHAR, '255', array(
+    ->addColumn('desktop_image', Varien_Db_Ddl_Table::TYPE_VARCHAR, '255', array(
         'nullable'  => false,
     ))
-    ->addColumn('image', Varien_Db_Ddl_Table::TYPE_VARCHAR, '255', array(
+    ->addColumn('mobile_image', Varien_Db_Ddl_Table::TYPE_VARCHAR, '255', array(
+        'nullable'  => false,
+    ))
+    ->addColumn('disclaimers_content', Varien_Db_Ddl_Table::TYPE_TEXT, '2048', array(
         'nullable'  => false,
     ))
     ->addColumn('sort_order', Varien_Db_Ddl_Table::TYPE_SMALLINT, '5', array(

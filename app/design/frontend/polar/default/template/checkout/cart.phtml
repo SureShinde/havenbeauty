@@ -45,9 +45,9 @@
         <div class="small-12 medium-2 large-2 columns text-right">Total</div>
     </div>
     <div class="box">
-        <form action="<?php echo $this->getUrl('checkout/cart/updatePost') ?>" method="post">
-            <?php echo $this->getBlockHtml('formkey'); ?>
             <fieldset>
+                <form action="<?php echo $this->getUrl('checkout/cart/updatePost') ?>" method="post">
+                    <?php echo $this->getBlockHtml('formkey'); ?>
                 <ul class="cart-list" id="shopping-cart-table">
                 <?php $mergedCells = ($this->helper('tax')->displayCartBothPrices() ? 2 : 1); ?>
                     <?php foreach($this->getItems() as $_item): ?>
@@ -89,6 +89,10 @@
                             <?php echo $this->getChildHtml('totals'); ?>
                         </div>
                     </li>
+                </ul>
+                </form>
+                <script type="text/javascript">decorateTable('shopping-cart-table')</script>
+                <ul class="" id="shopping-cart-table-2">
                     <li class="cart-collaterals">
                         <?php if(!$this->hasError()): ?>
                             <ul class="checkout-types">
@@ -157,9 +161,8 @@
                         <?php if (!$this->getIsVirtual()): echo $this->getChildHtml('shipping'); endif; ?>
                     </li>
                 </ul>
-                <script type="text/javascript">decorateTable('shopping-cart-table')</script>
+                <script type="text/javascript">decorateTable('shopping-cart-table-2')</script>
             </fieldset>
-        </form>
     </div>
     <?php echo $this->getChildHtml('crosssell') ?>
 </div>

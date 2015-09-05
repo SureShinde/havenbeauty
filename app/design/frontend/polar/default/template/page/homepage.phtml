@@ -35,6 +35,26 @@ $_attributes = Mage::helper('core')->decorateArray($this->getAllowAttributes());
               </ul>
             </div>
 
+<?php
+    $slHelper = $this->helper('sliderdata');
+    /**
+    * @var Valkyrie_SliderData_Helper_Data $slHelper
+    */
+    foreach($slHelper->getSlidesList() as $sl) {
+        if(strlen($sl->getData('disclaimers_content'))) {
+            ?>
+
+            <div id="disclaimers-<?php echo $sl->getData('slide_id'); ?>" class="reveal-modal" data-reveal
+                 aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
+                <h3 id="modalTitle">Read Disclaimer</h3>
+
+                <p><?php echo $sl->getData('disclaimers_content');?></p>
+                <button class="close-reveal-modal" aria-label="Close" type="button" class="button dark">Close</button>
+            </div>
+            <?php
+        }
+    }
+?>
             <?php echo $this->getChildHtml('faves') ?>
             <?php echo $this->getChildHtml('bestsellers') ?>
           </div>
@@ -54,7 +74,7 @@ $_attributes = Mage::helper('core')->decorateArray($this->getAllowAttributes());
 @media only screen and (min-width: 64.063em) { 
   #slider { overflow: hidden; min-height: 400px; } }
 #slider:before { content: ''; }
-#slider .container { content: ''; height: 100%; vertical-align: middle; position: relative; max-width: 1600px; margin: 0; }
+#slider .container { content: ''; height: 100%; vertical-align: middle; position: relative; margin: 0; }
 #slider ul { margin: 0; }
 #slider li { padding: 0; width: 100%; list-style: none; background-size: contain; background-repeat: no-repeat; height: 100%; position: relative; right: 0; }
 
@@ -81,23 +101,30 @@ $_attributes = Mage::helper('core')->decorateArray($this->getAllowAttributes());
 #slider .text { position: relative; width: 90%; margin: 0 auto; text-align: center; display: block; vertical-align: middle; }
 #slider .text .title { font-weight: bold; font-size: 2rem; letter-spacing: 0.4em; text-transform: uppercase; line-height: 1.2em; }
 #slider .text .subtitle { letter-spacing: 0.4em; font-size: 1.1rem; line-height: 1.2em; text-transform: uppercase; }
-#slider .container .action { display: block; margin: 0; width: 100%; height: 100%; }
-#slider .container .action a { display: block; margin: 0; width: 100%; height: 100%; padding: 0; letter-spacing: 0.2em; font-weight: bold; color: #000; font-size: 1.1rem; text-transform: uppercase; }
-#slider .text .action a:hover { text-decoration: none; background: #b2a177; }
+#slider .container .action { position: relative; display: block; margin: 0; width: 100%; height: 100%; }
+#slider .container .action a.action { position: relative; z-index: 100; display: block; margin: 0; width: 100%; height: 100%; padding: 0; letter-spacing: 0.2em; font-weight: bold; color: #000; font-size: 1.1rem; text-transform: uppercase; }
+#slider .text .action a.action:hover { text-decoration: none; background: #b2a177; }
+#slider .container .action a.pop { position: absolute; z-index: 200; text-transform: uppercase; letter-spacing: 0.4em; bottom: 10px; color: #000; text-decoration: underline; font-size: 0.8em; width: 100%; text-align: center; }
+#slider .container .action a.pop:hover { color: #b2a177; }
 @media only screen and (min-width: 40.063em) { 
   #slider .text { margin: auto; width: 42%; left: 5%; top: 0; right: 53%; bottom: 0; display: inline-block; }
   #slider .text .title { font-size: 1.6rem; }
   #slider .text .subtitle { letter-spacing: 0.3em; font-size: 1rem; }
-  #slider .text .action a { font-size: 1rem; } }
+  #slider .text .action a { font-size: 1rem; }
+  #slider .container .action a.pop { bottom: 20px; }
+}
 @media only screen and (min-width: 64.063em) { 
   #slider .text { width: 35%; left: 13%; right: 52%; }
   #slider .text .title { font-size: 2rem; }
   #slider .text .subtitle { letter-spacing: 0.4em; font-size: 1.1rem; }
-  #slider .text .action a { font-size: 1.1rem; } }
-#slider .image { position: relative; display: block; width: 90%; margin: 0 5% 5% 5%; vertical-align: middle; }
-#slider .image img { -moz-box-shadow: -3px 3px 14px #aaa; -webkit-box-shadow: -3px 3px 14px #aaa; box-shadow: -3px 3px 14px #aaa; }
+  #slider .text .action a { font-size: 1.1rem; }
+  #slider .image { position: relative; display: block; width: 90%; margin: 0 5% 5% 5%; vertical-align: middle; }
+  #slider .image img { -moz-box-shadow: -3px 3px 14px #aaa; -webkit-box-shadow: -3px 3px 14px #aaa; box-shadow: -3px 3px 14px #aaa; }
+  #slider .container .action a.pop { bottom: 50px; }
+}
 @media only screen and (min-width: 40.063em) { 
-  #slider .image { margin: auto; display: inline-block; width: 37%; top: 0; left: 51%; right: 12%; bottom: 0; } }
+  #slider .image { margin: auto; display: inline-block; width: 37%; top: 0; left: 51%; right: 12%; bottom: 0; } 
+}
 </style>
 <script>
 (function( $ ) {
@@ -134,10 +161,29 @@ $_attributes = Mage::helper('core')->decorateArray($this->getAllowAttributes());
 
 
             var sData = [
+
+<?php
+    $slHelper = $this->helper('sliderdata');
+    /**
+    * @var Valkyrie_SliderData_Helper_Data $slHelper
+    */
+    foreach($slHelper->getSlidesList() as $sl) {
+?>
+                {
+                    desktop: "<?php echo $this->helper('cms')->getBlockTemplateProcessor()->filter('{{media url="'.$sl->getData('desktop_image').'"}}') ?>",
+                    mobile: "<?php echo $this->helper('cms')->getBlockTemplateProcessor()->filter('{{media url="'.$sl->getData('mobile_image').'"}}') ?>",
+                    linkHref: "<?php echo $sl->getData('link_href'); ?>",
+                    disclaimers: "<?php echo strlen($sl->getData('disclaimers_content')) ? 'disclaimers-'.$sl->getData('slide_id') : '';?>"
+                },
+<?php
+    }
+?>
 //                {
 //                    desktop: "<?php //echo $this->helper('cms')->getBlockTemplateProcessor()->filter('{{media url="sliderdata_images/new/Desktop Carousel Images/1-promo-TEMPORARY.jpg"}}') ?>//",
 //                    mobile: "<?php //echo $this->helper('cms')->getBlockTemplateProcessor()->filter('{{media url="sliderdata_images/new/Mobile Carousel Images/1-promo-TEMPORARY.jpg"}}') ?>//"
 //                },
+
+/*
                 {
                     desktop: "<?php echo $this->helper('cms')->getBlockTemplateProcessor()->filter('{{media url="sliderdata_images/new/Desktop Carousel Images/2-kourtney-touchtones.jpg"}}') ?>",
                     mobile: "<?php echo $this->helper('cms')->getBlockTemplateProcessor()->filter('{{media url="sliderdata_images/new/Mobile Carousel Images/2-kourtney-touchtones.jpg"}}') ?>",
@@ -163,6 +209,7 @@ $_attributes = Mage::helper('core')->decorateArray($this->getAllowAttributes());
                     mobile: "<?php echo $this->helper('cms')->getBlockTemplateProcessor()->filter('{{media url="sliderdata_images/new/Mobile Carousel Images/6-khloe-DashofGlam.jpg"}}') ?>",
                     linkHref: "bronzer-and-highlighter/intimate-spotlight"
                 },
+*/
             ];
 /*
  Kourtney - Touch Tones
@@ -257,9 +304,13 @@ $_attributes = Mage::helper('core')->decorateArray($this->getAllowAttributes());
                         "<div class='big-image'>"+
                         "<img src='"+_imgUrl+"' />"+
                         "</div>"+
-                        "<div class='container'>"+
-                        "<div class='action'><a href='"+_data.linkHref+"'>&nbsp;</a></div>"+
-                        "</div>"+
+                        "<div class='container'>";
+
+                        if(_data.disclaimers) {
+                            _html += "<div class='action'><a class='action' href='"+_data.linkHref+"'>&nbsp;</a><a href='javascript:void(0);' class='pop' data-reveal-id='"+_data.disclaimers+"'>Disclaimer</a></div>";
+                        }
+
+                        _html +="</div>"+
                         "</li>";
                     return _html;
                 }

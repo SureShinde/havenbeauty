@@ -40,17 +40,17 @@ class Valkyrie_SliderData_Block_Adminhtml_SliderData_Grid extends Mage_Adminhtml
       'index'     => 'title',
     ));
 
-    $this->addColumn('sub_title', array(
+/*    $this->addColumn('sub_title', array(
       'header'    => Mage::helper('sliderdata')->__('Subtitle'),
       'align'     => 'left',
       'index'     => 'sub_title',
-    ));
+    ));*/
 
-    $this->addColumn('link_caption', array(
+/*    $this->addColumn('link_caption', array(
       'header'    => Mage::helper('sliderdata')->__('Link Caption'),
       'align'     => 'left',
       'index'     => 'link_caption',
-    ));
+    ));*/
 
     $this->addColumn('link_href', array(
       'header'    => Mage::helper('sliderdata')->__('Link Href'),
@@ -58,16 +58,16 @@ class Valkyrie_SliderData_Block_Adminhtml_SliderData_Grid extends Mage_Adminhtml
       'index'     => 'link_href',
     ));
 
-      $this->addColumn('bg_image', array(
-          'header'    => Mage::helper('sliderdata')->__('BG Image'),
+      $this->addColumn('desktop_image', array(
+          'header'    => Mage::helper('sliderdata')->__('Desktop Image'),
           'align'     => 'left',
-          'index'     => 'bg_image',
+          'index'     => 'desktop_image',
       ));
 
-      $this->addColumn('image', array(
-          'header'    => Mage::helper('sliderdata')->__('Image'),
+      $this->addColumn('mobile_image', array(
+          'header'    => Mage::helper('sliderdata')->__('Mobile Image'),
           'align'     => 'left',
-          'index'     => 'image',
+          'index'     => 'mobile_image',
       ));
 
 

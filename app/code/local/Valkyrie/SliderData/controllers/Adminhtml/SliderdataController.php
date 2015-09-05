@@ -67,58 +67,58 @@ class Valkyrie_SliderData_Adminhtml_SliderDataController extends Mage_Adminhtml_
   {
     if ($data = $this->getRequest()->getPost())
     {
-        if(isset($_FILES['image']['name']) && (file_exists($_FILES['image']['tmp_name']))) {
+        if(isset($_FILES['desktop_image']['name']) && (file_exists($_FILES['desktop_image']['tmp_name']))) {
             try {
 
-                $uploader = new Varien_File_Uploader('image');
+                $uploader = new Varien_File_Uploader('desktop_image');
 
                 $uploader->setAllowedExtensions(array('jpg','jpeg','gif','png')); // or pdf or anything
 
                 $uploader->setAllowRenameFiles(true);
                 $uploader->setFilesDispersion(false);
 
-                $path = Mage::getBaseDir('media') . DS . self::SLIDER_DATA_IMAGES_DIR;
+                $path = Mage::getBaseDir('media') . DS . self::SLIDER_DATA_IMAGES_DIR. DS . 'desktop';
 
-                $uploader->save($path, $_FILES['image']['name']);
+                $uploader->save($path, $_FILES['desktop_image']['name']);
 
-                $data['image'] = self::SLIDER_DATA_IMAGES_DIR .'/'. $_FILES['image']['name'];
+                $data['desktop_image'] = self::SLIDER_DATA_IMAGES_DIR .'/desktop/'. $_FILES['desktop_image']['name'];
 
             } catch(Exception $e) {
 
             }
         } else {
 
-            if(isset($data['image']['delete']) && $data['image']['delete'] == 1)
-                $data['image'] = '';
+            if(isset($data['desktop_image']['delete']) && $data['desktop_image']['delete'] == 1)
+                $data['desktop_image'] = '';
             else
-                unset($data['image']);
+                unset($data['desktop_image']);
         }
 
-        if(isset($_FILES['bg_image']['name']) && (file_exists($_FILES['bg_image']['tmp_name']))) {
+        if(isset($_FILES['mobile_image']['name']) && (file_exists($_FILES['mobile_image']['tmp_name']))) {
             try {
 
-                $uploader = new Varien_File_Uploader('bg_image');
+                $uploader = new Varien_File_Uploader('mobile_image');
 
                 $uploader->setAllowedExtensions(array('jpg','jpeg','gif','png')); // or pdf or anything
 
                 $uploader->setAllowRenameFiles(true);
                 $uploader->setFilesDispersion(false);
 
-                $path = Mage::getBaseDir('media') . DS . self::SLIDER_DATA_IMAGES_DIR;
+                $path = Mage::getBaseDir('media') . DS . self::SLIDER_DATA_IMAGES_DIR. DS . 'mobile';
 
-                $uploader->save($path, $_FILES['bg_image']['name']);
+                $uploader->save($path, $_FILES['mobile_image']['name']);
 
-                $data['bg_image'] = self::SLIDER_DATA_IMAGES_DIR .'/'. $_FILES['bg_image']['name'];
+                $data['mobile_image'] = self::SLIDER_DATA_IMAGES_DIR .'/mobile/'. $_FILES['mobile_image']['name'];
 
             } catch(Exception $e) {
 
             }
         } else {
 
-            if(isset($data['bg_image']['delete']) && $data['bg_image']['delete'] == 1)
-                $data['bg_image'] = '';
+            if(isset($data['mobile_image']['delete']) && $data['mobile_image']['delete'] == 1)
+                $data['mobile_image'] = '';
             else
-                unset($data['bg_image']);
+                unset($data['mobile_image']);
         }
 
 

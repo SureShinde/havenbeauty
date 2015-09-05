@@ -43,7 +43,7 @@ class Valkyrie_SliderData_Block_Adminhtml_SliderData_Edit_Form extends Mage_Admi
       'name'      => 'title',
     ));
 
-    $fieldset->addField('sub_title', 'text', array(
+/*    $fieldset->addField('sub_title', 'text', array(
       'label'     => Mage::helper('sliderdata')->__('Subtitle'),
       'class'     => 'required-entry',
       'required'  => true,
@@ -55,24 +55,31 @@ class Valkyrie_SliderData_Block_Adminhtml_SliderData_Edit_Form extends Mage_Admi
       'class'     => 'required-entry',
       'required'  => true,
       'name'      => 'link_caption',
-    ));
+    ));*/
 
     $fieldset->addField('link_href', 'text', array(
       'label'     => Mage::helper('sliderdata')->__('Link Href'),
       'name'      => 'link_href',
     ));
 
-      $fieldset->addField('bg_image', 'image', array(
-          'label' => Mage::helper('sliderdata')->__('BG Image'),
-          'name' => 'bg_image',
+      $fieldset->addField('desktop_image', 'image', array(
+          'label' => Mage::helper('sliderdata')->__('Desktop Image'),
+          'name' => 'desktop_image',
           'after_element_html' => '<small>'.$imagesDir.'</small>',
       ));
 
-      $fieldset->addField('image', 'image', array(
-          'label' => Mage::helper('sliderdata')->__('Image'),
-          'name' => 'image',
+      $fieldset->addField('mobile_image', 'image', array(
+          'label' => Mage::helper('sliderdata')->__('Mobile Image'),
+          'name' => 'mobile_image',
           'after_element_html' => '<small>'.$imagesDir.'</small>',
       ));
+
+    $fieldset->addField('disclaimers_content', 'textarea', array(
+        'label'     => Mage::helper('sliderdata')->__('Disclaimers'),
+        'name'      => 'disclaimers_content',
+    ));
+
+
 
     $fieldset->addField('sort_order', 'text', array(
       'label'     => Mage::helper('sliderdata')->__('Sort Order'),
