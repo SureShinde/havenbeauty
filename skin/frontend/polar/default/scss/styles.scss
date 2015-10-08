@@ -125,6 +125,74 @@ body.overlay {
     	text-align: center;
     }
 }
+div.AuthorizeNetSeal {
+	padding: $base-font-size * 2 !important; 
+	width: auto !important; 
+	display: inline;
+	img {
+		width: 60px;
+	}
+}
+#trustwaveSealImage {
+	width: 80px;
+	margin-top: 5px;
+}
+@media #{$large-up} {
+	div.AuthorizeNetSeal {
+		position: absolute;
+		right: 0;
+		bottom: 0;
+	}
+	#trustwaveSealImage {
+		position: absolute;
+    	right: 120px;
+    	bottom: 33px;
+    }
+}
+.reveal-modal {
+	text-align: center;
+	width: 50%;
+	left: 25%;
+
+	@media #{$medium-up} {
+		padding: $base-font-size * 4;
+	}
+	h3 {
+		text-transform: uppercase;
+	    font-weight: bold;
+	    text-align: center;
+	    margin: $base-font-size 0;
+	    letter-spacing: 0.2em;
+	    
+	    @media #{$small-only} {
+			font-size: $base-font-size;
+		}
+	}
+	.close-reveal-modal {
+		color: #fff;
+		font-size: $base-font-size * 1;
+		font-weight: bold;
+		line-height: normal; 
+		position: relative;
+		top: auto;
+		right: auto;
+		text-transform: uppercase;
+		letter-spacing: 0.2em;
+		display: inline-block;
+		background: #000;
+		padding: $base-font-size * 0.5 0;
+		
+		@media #{$medium-up} {
+			font-size: $base-font-size * 1.2;
+			padding: $base-font-size * 0.5 $base-font-size * 2.125;
+		}
+		&:hover {
+			background: $gold;
+			border-color: $gold;
+			
+		}
+	}
+}
 
 /*#slider {
 	width: 100%;

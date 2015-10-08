@@ -26,7 +26,7 @@
 ?>
 
 <div id="discount-coupon-form">
-    <form class="discount" action="<?php echo $this->getUrl('checkout/cart/couponPost') ?>" method="post">
+    <form class="discount" id="discount-coupon" action="<?php echo $this->getUrl('checkout/cart/couponPost') ?>" method="post">
         <div class="discount-form">
             <input type="hidden" name="remove" id="remove-coupone" value="0" />
             <div class="input-box">
@@ -43,7 +43,7 @@
 </div>
 <script type="text/javascript">
 //<![CDATA[
-var discountForm = new VarienForm('discount-coupon-form');
+var discountForm = new VarienForm('discount-coupon');
 discountForm.submit = function (isRemove) {
     if (isRemove) {
         $('coupon_code').removeClassName('required-entry');

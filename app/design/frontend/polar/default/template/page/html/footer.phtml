@@ -49,15 +49,21 @@
           <script>window.twttr=(function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],t=window.twttr||{};if(d.getElementById(id))return t;js=d.createElement(s);js.id=id;js.src="https://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);t._e=[];t.ready=function(f){t._e.push(f);};return t;}(document,"script","twitter-wjs"));</script>
         </div>
       </div>
+      
       <?php $footer_links1 =  $this->getLayout()->createBlock('cms/block')->setBlockId('footer_links1')->toHtml(); ?>
       <?php $footer_links2 =  $this->getLayout()->createBlock('cms/block')->setBlockId('footer_links2')->toHtml(); ?>
       
       <div class="links"><?php if($footer_links1) { echo $footer_links1; } ?></div>
-    
+
+      <script type="text/javascript" src="https://sealserver.trustwave.com/seal.js?code=2e28d46b0abb4f9aa149afdbc03a7ae9"></script>
+      <!-- (c) 2005, 2015. Authorize.Net is a registered trademark of CyberSource Corporation -->
+      <div class="AuthorizeNetSeal"><script type="text/javascript" language="javascript">var ANS_customer_id="be969bef-900c-4181-a820-8621f98c8965";</script> <script type="text/javascript" language="javascript" src="//verify.authorize.net/anetseal/seal.js" ></script></div>
+      
       <div class="copyright">
           <p><?php echo $this->getCopyright() ?></p>
       </div>
     
     </div>
   </div>
+  
 </div>

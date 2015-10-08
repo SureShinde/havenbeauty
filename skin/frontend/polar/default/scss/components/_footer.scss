@@ -43,8 +43,9 @@
     }
   }
   .buttons {
-    margin: 1.5rem 0 2rem 0;
-    
+    margin: $base-font-size*1.5 0 $base-font-size 0;
+    padding-left: 12px;
+
     .sep {
       margin: 0 1rem;
       display: inline-block;

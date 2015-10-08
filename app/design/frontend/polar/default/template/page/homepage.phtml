@@ -87,6 +87,12 @@ $_attributes = Mage::helper('core')->decorateArray($this->getAllowAttributes());
     width:100%;
 }
 
+.reveal-modal {
+    text-align: center;
+    width: 50%;
+    left: 0%;
+}
+
 #slider li.currentSlide { z-index:10}
 #slider li.nextSlide { margin-top: -100%; z-index:1}
 #slider .pager { position: absolute; top: 101%; left: 50%; text-align: center; width: 100px; margin-left: -50px; z-index: 100; }
@@ -104,26 +110,38 @@ $_attributes = Mage::helper('core')->decorateArray($this->getAllowAttributes());
 #slider .container .action { position: relative; display: block; margin: 0; width: 100%; height: 100%; }
 #slider .container .action a.action { position: relative; z-index: 100; display: block; margin: 0; width: 100%; height: 100%; padding: 0; letter-spacing: 0.2em; font-weight: bold; color: #000; font-size: 1.1rem; text-transform: uppercase; }
 #slider .text .action a.action:hover { text-decoration: none; background: #b2a177; }
-#slider .container .action a.pop { position: absolute; z-index: 200; text-transform: uppercase; letter-spacing: 0.4em; bottom: 10px; color: #000; text-decoration: underline; font-size: 0.8em; width: 100%; text-align: center; }
+#slider .container .action a.pop { position: absolute; z-index: 200; text-transform: uppercase; letter-spacing: 0.4em; bottom: 10px; color: #000; text-decoration: underline; font-size: 0.8em; text-align: center; }
 #slider .container .action a.pop:hover { color: #b2a177; }
-@media only screen and (min-width: 40.063em) { 
+
+@media only screen and (max-width: 40em){
+  #slider .container .action a.pop { bottom: 0px; width:100%;}
+    .reveal-modal {
+        left: 25%;
+    }
+
+}
+@media only screen and (min-width: 40.063em){
   #slider .text { margin: auto; width: 42%; left: 5%; top: 0; right: 53%; bottom: 0; display: inline-block; }
   #slider .text .title { font-size: 1.6rem; }
   #slider .text .subtitle { letter-spacing: 0.3em; font-size: 1rem; }
   #slider .text .action a { font-size: 1rem; }
-  #slider .container .action a.pop { bottom: 20px; }
+  #slider .container .action a.pop { bottom: 10px; width:100%;text-decoration: none;}
+  #slider .container .action a.pop:hover { text-decoration: none;}
 }
-@media only screen and (min-width: 64.063em) { 
+@media only screen and (min-width: 64.063em) {
   #slider .text { width: 35%; left: 13%; right: 52%; }
   #slider .text .title { font-size: 2rem; }
   #slider .text .subtitle { letter-spacing: 0.4em; font-size: 1.1rem; }
   #slider .text .action a { font-size: 1.1rem; }
   #slider .image { position: relative; display: block; width: 90%; margin: 0 5% 5% 5%; vertical-align: middle; }
   #slider .image img { -moz-box-shadow: -3px 3px 14px #aaa; -webkit-box-shadow: -3px 3px 14px #aaa; box-shadow: -3px 3px 14px #aaa; }
-  #slider .container .action a.pop { bottom: 50px; }
+  #slider .container .action a.pop { bottom: 5px; left:10px; text-align: left; font-size: 1.1rem; display:block; width: 100px; height: 30px; text-decoration: none;}
+  #slider .container .action a.pop:hover {text-decoration: none;}
 }
 @media only screen and (min-width: 40.063em) { 
-  #slider .image { margin: auto; display: inline-block; width: 37%; top: 0; left: 51%; right: 12%; bottom: 0; } 
+  #slider .image { margin: auto; display: inline-block; width: 37%; top: 0; left: 51%; right: 12%; bottom: 0; }
+    #slider .container .action a.pop { bottom: 5px; left:10px; text-align: left; font-size: 1.1rem; display:block; width: 100px; height: 30px; text-decoration: none;}
+    #slider .container .action a.pop:hover {text-decoration: none;}
 }
 </style>
 <script>
@@ -239,7 +257,7 @@ $_attributes = Mage::helper('core')->decorateArray($this->getAllowAttributes());
                 }
 
                 var timings = {
-                    sliderDelay:4500,
+                    sliderDelay:104500,
                     foregroundFadeOut:700,
 
                     backgroundFadeOutDelay:200,
@@ -286,7 +304,7 @@ $_attributes = Mage::helper('core')->decorateArray($this->getAllowAttributes());
                         _classString = "class='"+extraClass+"'";
                     }
 
-                    var _imgUrl;
+                    var _imgUrl, _disclaimersLinkCaption;
 
                     var wW;
                     if(device.desktop()) wW = window.outerWidth;
@@ -294,8 +312,10 @@ $_attributes = Mage::helper('core')->decorateArray($this->getAllowAttributes());
 
                     if(wW > 640) {
                         _imgUrl = _data.desktop;
+                        _disclaimersLinkCaption = "&nbsp;";
                     } else {
                         _imgUrl = _data.mobile;
+                        _disclaimersLinkCaption = "DETAIL<span style='letter-spacing: 0;'>S</span>";
                     }
 
                     _imgUrl = encodeURI(_imgUrl);
@@ -306,9 +326,12 @@ $_attributes = Mage::helper('core')->decorateArray($this->getAllowAttributes());
                         "</div>"+
                         "<div class='container'>";
 
+                        _html += "<div class='action'><a class='action' href='"+_data.linkHref+"'>&nbsp;</a>";
                         if(_data.disclaimers) {
-                            _html += "<div class='action'><a class='action' href='"+_data.linkHref+"'>&nbsp;</a><a href='javascript:void(0);' class='pop' data-reveal-id='"+_data.disclaimers+"'>Disclaimer</a></div>";
+                            _html += "<a href='javascript:void(0);' class='pop' data-reveal-id='"+_data.disclaimers+"'>"+_disclaimersLinkCaption+"</a>";
                         }
+                        _html += "</div>";
+
 
                         _html +="</div>"+
                         "</li>";

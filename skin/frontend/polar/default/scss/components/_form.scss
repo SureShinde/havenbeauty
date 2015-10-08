@@ -225,8 +225,9 @@ form ul:after {
   display: none;
 }
 .cvv-what-is-this {
-  border: 1px solid black;
-  border-radius: 50% 50%;
+  position: absolute;
+  left: 100px;
+  top: 30px;
   font-family: arial;
   padding: 0 4px;
   font-size: 0.8rem;

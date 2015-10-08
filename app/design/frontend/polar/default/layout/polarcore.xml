@@ -91,6 +91,7 @@
 
             <action method="addItem"><type>skin_js</type><name>foundation/js/foundation/foundation.accordion.js</name><params/></action>
 
+            <action method="addItem"><type>skin_js</type><name>foundation/js/foundation/foundation.reveal.js</name><params/></action>
             <!--
             <action method="addItem"><type>skin_js</type><name>foundation/js/foundation/foundation.abide.js</name><params/></action>
             
@@ -101,7 +102,6 @@
             <action method="addItem"><type>skin_js</type><name>foundation/js/foundation/foundation.joyride.js</name><params/></action>
             <action method="addItem"><type>skin_js</type><name>foundation/js/foundation/foundation.magellan.js</name><params/></action>
             <action method="addItem"><type>skin_js</type><name>foundation/js/foundation/foundation.orbit.js</name><params/></action>
-            <action method="addItem"><type>skin_js</type><name>foundation/js/foundation/foundation.reveal.js</name><params/></action>
             <action method="addItem"><type>skin_js</type><name>foundation/js/foundation/foundation.slider.js</name><params/></action>
             <action method="addItem"><type>skin_js</type><name>foundation/js/foundation/foundation.tooltip.js</name><params/></action>
             <action method="addItem"><type>skin_js</type><name>foundation/js/foundation/foundation.topbar.js</name><params/></action>

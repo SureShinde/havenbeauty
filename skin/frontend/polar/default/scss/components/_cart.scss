@@ -55,6 +55,8 @@
 .cart .cart-collaterals {
   border-bottom: none;
   text-align: center;
+  list-style: none;
+  
   @media #{$medium-up} {
     text-align: right;
   }
@@ -86,7 +88,7 @@
     margin: $base-font-size 0;
     display: inline-block;
   }
-  #discount-coupon-form {
+  #discount-coupon {
     margin-bottom: $base-font-size;
   }
   .checkout-types {
@@ -145,7 +147,7 @@
     text-transform: uppercase;
     color: #000;
   }
-  #discount-coupon-form .discount-form {
+  #discount-coupon .discount-form {
     @media #{$medium-up} {
       width: 33.3%;
       float: right;

@@ -58,3 +58,13 @@
 </ul>
 <?php endif;?>
 <?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('polar-success')->toHtml(); ?>
+
+<?php 
+//Get Order Number & Order Total for Bing Tracking
+$order = Mage::getModel('sales/order')->loadByIncrementId(Mage::getSingleton('checkout/session')->getLastRealOrderId()); 
+$amount = number_format($order->getGrandTotal(),2); 
+?>
+<script>
+  var uetq = uetq || [];
+  uetq.push({ 'gv': <?php echo $amount; ?>}); 
+</script>

@@ -16,6 +16,7 @@
 /* Horizontal mode, standard */
 .opc {
   list-style-type: none;
+  margin-bottom: 0;
   .section.active .step-title {
       border-bottom: 1px solid $jet;
     }
@@ -25,7 +26,7 @@
       padding: $base-font-size 0;
       h2 {
         position: relative;
-        font-weight: normal;
+        font-weight: bold;
         font-size: $base-font-size * 0.9;
         line-height: normal;
         letter-spacing: 0.1em;

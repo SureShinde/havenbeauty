@@ -18,7 +18,7 @@
 /**
  * The Sales Quote Address model.
  */
-class OnePica_AvaTax_Model_Sales_Quote_Address extends Mage_Sales_Model_Quote_Address
+class OnePica_AvaTax_Model_Sales_Quote_Address extends OnePica_AvaTax_Model_Sales_Quote_Address_Amasty_Pure
 {
     /**
      * Avatax address validator instance
@@ -116,7 +116,7 @@ class OnePica_AvaTax_Model_Sales_Quote_Address extends Mage_Sales_Model_Quote_Ad
      *
      * @param   string $code
      * @param   float $amount
-     * @return  Mage_Sales_Model_Quote_Address
+     * @return  OnePica_AvaTax_Model_Sales_Quote_Address_Amasty_Pure
      */
     public function addTotalAmount($code, $amount)
     {
@@ -130,7 +130,7 @@ class OnePica_AvaTax_Model_Sales_Quote_Address extends Mage_Sales_Model_Quote_Ad
      *
      * @param   string $code
      * @param   float $amount
-     * @return  Mage_Sales_Model_Quote_Address
+     * @return  OnePica_AvaTax_Model_Sales_Quote_Address_Amasty_Pure
      */
     public function addBaseTotalAmount($code, $amount)
     {
@@ -144,7 +144,7 @@ class OnePica_AvaTax_Model_Sales_Quote_Address extends Mage_Sales_Model_Quote_Ad
      *
      * @param   string $code
      * @param   float $amount
-     * @return  Mage_Sales_Model_Quote_Address
+     * @return  OnePica_AvaTax_Model_Sales_Quote_Address_Amasty_Pure
      */
     public function setTotalAmount($code, $amount)
     {
@@ -161,7 +161,7 @@ class OnePica_AvaTax_Model_Sales_Quote_Address extends Mage_Sales_Model_Quote_Ad
      *
      * @param   string $code
      * @param   float $amount
-     * @return  Mage_Sales_Model_Quote_Address
+     * @return  OnePica_AvaTax_Model_Sales_Quote_Address_Amasty_Pure
      */
     public function setBaseTotalAmount($code, $amount)
     {
